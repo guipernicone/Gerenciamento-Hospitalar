@@ -1,0 +1,203 @@
+<!DOCTYPE HTML>
+<html lang= "pt-br" >
+
+<head>
+    <title>Hospital Tópicos de Programação</title>
+    
+    <link rel="stylesheet" href="css/design.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/cadastraCirurgia.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Font Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <script>
+    $(document).ready(function(){
+        $.ajax({
+             url:'/cadastrar_cirurgias/Medico',
+             dataType: 'json',
+             error:function(dados){
+                 alert('Erro: '+dados.data);
+             },
+             success:function(dados){
+                 if(dados.status === 'ERRO'){
+                     alert('Erro: '+dados.data);
+                 }
+                     
+                 else{
+                     setMedico(dados.data);
+                     /*Se a recuperação de medicos deu certo faz a de paciente*/    
+                     $.ajax({
+                         url:'/cadastrar_cirurgias/Paciente',
+                         dataType: 'json',
+                         error:function(dados){
+                             alert('Erro: '+dados.data);
+                         },
+                         success:function(dados){
+                             if(dados.status === 'ERRO'){
+                                 alert('Erro: '+dados.data);
+                             }
+                                 
+                             else{
+                                 setPaciente(dados.data);
+                                 /*Se a recuperação de paciente deu certo faz a de salas*/                                                    
+                                 $.ajax({
+                                     url:'/cadastrar_cirurgias/Sala',
+                                     dataType: 'json',
+                                     error:function(dados){
+                                         alert('Erro: '+dados.data);
+                                     },
+                                     success:function(dados){
+                                         if(dados.status === 'ERRO'){
+                                             alert('Erro: '+dados.data);
+                                         }
+                                             
+                                         else{
+                                             setSala(dados.data);
+                                             /*Se a recuperação de sala deu certo faz a de recursos*/    
+                                             $.ajax({
+                                                 url:'/cadastrar_cirurgias/Recurso',
+                                                 dataType: 'json',
+                                                 error:function(dados){
+                                                     alert('Erro: '+dados.data);
+                                                 },
+                                                 success:function(dados){
+                                                     if(dados.status === 'ERRO'){
+                                                         alert('Erro: '+dados.data);
+                                                     }
+                                                         
+                                                     else{
+                                                         setRecurso(dados.data);
+
+                                                         $.ajax({
+                                                            url:'/cadastrar_cirurgias/CodigoCir',
+                                                            dataType: 'json',
+                                                            error:function(dados){
+                                                                alert('Erro: '+dados.data);
+                                                            },
+                                                            success:function(dados){
+                                                                if(dados.status === 'ERRO'){
+                                                                    alert('Erro: '+dados.data);
+                                                                }
+                                                                    
+                                                                else{
+                                                                    setCodigoCir(dados.data);
+
+                                                                     $.ajax({
+                                                                        url:'/cadastrar_cirurgias/Enfermeira',
+                                                                        dataType: 'json',
+                                                                        error:function(dados){
+                                                                            alert('Erro: '+dados.data);
+                                                                        },
+                                                                        success:function(dados){
+                                                                            if(dados.status === 'ERRO'){
+                                                                                alert('Erro: '+dados.data);
+                                                                            }
+                                                                                
+                                                                            else{
+                                                                                setEnfermeira(dados.data);
+                                                                            }
+                                                                        }
+                                                                    });
+                                                                }
+                                                            }
+                                                        });
+                                                     }
+                                                 }
+                                             });
+                                         }
+                                     }
+                                 });
+                             }
+                         }
+                     });
+                 }
+             }
+         });
+     });
+     </script>
+</head>
+
+
+<body>
+    <!-- Jumbtron / Slider -->
+    <div class="jumbotron-wrap">
+        <div class="container">
+            <div class="jumbotron jumbotron-narrow">
+                <h1 class="text-center">Hospital Tópicos de Programação</h1>
+            </div>
+        </div>
+    </div>
+
+    <main class="container">
+    <div class="nrow">
+                
+    <fieldset>
+        <legend>Cadastrar cirurgia</legend>
+        <form action="/cadastrar_cirurgias/salvar" method="post">
+            <div class="form-group">
+                <label for="paciente">Paciente envolvido</label>
+                <select id="paciente" name="id_pac_cir" class="form-control" required>
+                    <option style="display:none;" >Selecione o Paciente</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="medico">Médico envolvido</label>
+                <select id="medico" name="id_med_cir" class="form-control" required>
+                    <option style="display:none;" >Selecione o Médico</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="enfermeira">Enfermeiro envolvido</label>
+                <select id="enfermeira" name="id_enf_cir" class="form-control" required>
+                    <option style="display:none;" >Selecione a Enfermeira</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="sala">Sala da cirurgia</label>
+                <select id="sala" name="id_sala_cir" class="form-control" required>
+                    <option style="display:none;" >Selecione a Sala</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="codigo">Tipo da cirurgia</label>
+                <select id="codigo" name="cod_tc_cir" class="form-control" required>
+                    <option style="display:none;" >Selecione o tipo de Cirurgia</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="recursos">Recurso necessário</label>
+                <select id="recursos" name="recursos_cir" class="form-control" required>
+                    <option style="display:none;" >Selecione o tipo de Cirurgia</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Quantidade do recurso</label>
+                <input name="qtde_rec_cir" type="number" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label>Horário da cirurgia</label>
+                <input name="horario_cir" type="text" class="form-control" placeholder="hh:mm"/>
+            </div>
+            <div class="form-group">
+                <label>Data da cirurgia</label>
+                <input name="data_cir" type="date" class="form-control"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Cadastrar cirurgia</button>
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='/index'">Página Principal</button>  
+        </form>
+    </fieldset>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    </div> 
+    </main>
+
+    <!-- Bootcamp JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</body>
+</html> 

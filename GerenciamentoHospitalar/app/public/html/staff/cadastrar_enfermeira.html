@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html lang= "pt-br" >
+
+<head>
+    <title>Hospital Topicos de Programacao</title>
+    <link rel="stylesheet" href="css/design.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Font Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+
+<body>
+   <!-- Jumbtron / Slider -->
+   <div class="jumbotron-wrap">
+		<div class="container">
+			<div class="jumbotron jumbotron-narrow">
+				<h1 class="text-center">Hospital Tópicos de Programação</h1>
+			</div>
+		</div>
+    </div>
+   <!--Form para cadastrar enfermeira-->
+   <fieldset>
+       <legend>Cadastrar Enfermeiro</legend>
+       <form action="/cadastrar_enfermeira/salvar" method="post">
+           <div class="form-group">
+               <label for="nome">Nome do Enfermeiro</label>
+               <input name="nome_enf" type="text" class="form-control" id="nome" required>
+           </div>
+           <div class="form-group">
+               <label>RG</label>
+               <input name="rg_enf" type="number" class="form-control"/>
+           </div>
+           <div class="form-group">
+               <label>CPF</label>
+               <input name="cpf_enf" type="text" class="form-control"/>
+           </div>
+           <div class="form-group">
+               <label>Telefone</label>
+               <input name="telefone_enf" type="text" class="form-control"/>
+           </div>
+           <div class="form-group">
+               <label>Horário de entrada do expediente</label>
+               <input name="hora_de_entrada_enf" type="text" class="form-control"/>
+           </div>
+           <div class="form-group">
+               <label>Horário de saída do expediente</label>
+               <input name="hora_de_saida_enf" type="text" class="form-control"/>
+           </div>
+           <div class="form-group">
+               <label>Endereço</label>
+               <input name="endereco_enf" type="text" class="form-control"/>
+           </div>
+           <button type="submit" class="btn btn-primary">Cadastrar Enfermeira</button>
+           <button type="button" class="btn btn-secondary" onclick="window.location.href='/index'">Página Principal</button>
+       </form>
+   </fieldset>
+
+    <!-- Bootcamp JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</body>
+</html>

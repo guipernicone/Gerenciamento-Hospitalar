@@ -1,0 +1,21 @@
+.lista{
+    border-radius: 25px;
+    background-color: #dfdfdf;
+    color:black;
+    width: 400px;
+    margin:auto;
+    margin-bottom: 15px;
+    padding:10px;
+}
+#result{
+    text-align:center;
+}
+
+.botao{
+    margin:auto;
+    margin-bottom: 30px;
+    display:block;
+    color:white;
+    background-color:#c96480;
+    border-radius: 10px;
+}
